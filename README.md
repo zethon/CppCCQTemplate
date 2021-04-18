@@ -31,6 +31,12 @@ ERROR: Conflict in cmake/3.19.1:
     To fix this conflict you need to override the package 'openssl' in your root package.
 ```
 
+### Using Qt6 with Conan and CMake
+
+The only way I could get Qt6 to work with Conan and CMake was by including the `/CMake/conan.cmake` file from: https://github.com/conan-io/cmake-conan 
+
+I also had to make sure to use the Qt6 located at `qt/6.0.1@bincrafters/stable`. Using the resource at `qt/6.0.1` produced CMake configuration errors.
+
 ### Helpful Links
 
 https://wiki.qt.io/Qt6_Add-on_src_package_build_using_Conan_package_manager

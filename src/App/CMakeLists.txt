@@ -29,7 +29,6 @@ elseif(WIN32)
     set(GUI_TYPE WIN32)
 endif()
 
-# add_executable(qt_minimal main.cpp)
 add_executable(App ${GUI_TYPE}
     ${SOURCE_FILES}
 )

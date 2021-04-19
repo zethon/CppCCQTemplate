@@ -1,18 +1,24 @@
-# CppCCQTemplate
-A C++ Conan CMake Qt6 Project Template
+# C++ Conan CMake Qt6 Project Template
 
-conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+This project aims to provide examples of the following common tasks associated with a Github hosted C++ project:
 
-This project is a 
+* Using Qt6 with CMake and Conan
+* Using Qt .ui files
+* Using a custom library
+* Github actions to build on Windows, Mac and Ubuntu
+* A unit test environment
+* Packaging and Deployment
 
-* Conan
-* Qt 6
-* UI files
-* GitHub Actions
+Each item is discussed in detail.
 
-## Build
+## Project Organization
+
+
+## Using Qt6 with CMake and Conan
+
 
 ```
+conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
 git clone https://github.com/zethon/CppCCQTemplate.git
 cd CppCCQTemplate 
 mkdir build && cd build

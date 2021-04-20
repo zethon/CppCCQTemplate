@@ -26,6 +26,21 @@ conan install .. -s build_type=Debug -g cmake_paths -g cmake_find_package -g=cma
 cmake .. -DCMAKE_BUILD_TYPE=Debug
 cmake --build . 
 ```
+
+## Using a custom library
+
+The library is called `MyLib` is exists in `src/MyLib`. The `App` project statically links to it.
+
+Even though no linking is actually done when builing the library by itself, this line must still be included in the library's CMake file:
+
+```
+target_link_libraries(MyLib PRIVATE
+    Qt6::Core
+)
+```
+
+Without this the compiler complains that it cannot find `QString` on the line: `#include <QString>`.
+
 ## Notes
 ### CMake, Qt, OpenSSL conflict error
 

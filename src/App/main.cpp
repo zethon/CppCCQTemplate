@@ -2,6 +2,8 @@
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
+
+#include <../MyLib/MyClass.h>
  
 int main(int argc, char *argv[]) 
 {
@@ -12,8 +14,10 @@ int main(int argc, char *argv[])
     widget.setWindowTitle("Hello, world!!!");
     
     QGridLayout *gridLayout = new QGridLayout(&widget);
- 
-    QLabel * label = new QLabel("Hello, world!!!");
+
+    app::MyClass obj("Hello");
+    QLabel * label = new QLabel(obj.appendIt("library world!!"));
+
     label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     gridLayout->addWidget(label);
  

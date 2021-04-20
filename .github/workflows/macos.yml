@@ -29,6 +29,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Upgrading CMake
+      run: |
+        brew upgrade cmake
+        cmake --version
+
     - name: Get Conan
       uses: turtlebrowser/get-conan@v1.0
 

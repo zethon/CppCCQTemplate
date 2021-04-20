@@ -2,12 +2,13 @@
 
 This project aims to provide examples of the following common tasks associated with a Github hosted C++ project:
 
-* Using Qt6 with CMake and Conan
-* Using Qt .ui files
-* Using a custom library
-* Github actions to build on Windows, Mac and Ubuntu
-* A unit test environment
-* Packaging and Deployment
+* `[x]` Using Qt6 with CMake and Conan
+* `[ ]` Using Qt .ui files
+* `[x]` Using a custom static library
+* `[ ]` Using a custom shared library
+* `[ ]` Github actions to build on Windows, Mac and Ubuntu
+* `[ ]` A unit test environment
+* `[ ]` Packaging and Deployment
 
 Each item is discussed in detail.
 
@@ -16,15 +17,34 @@ Each item is discussed in detail.
 
 ## Using Qt6 with CMake and Conan
 
+First we clone the Github repository:
+
+```
+git clone https://github.com/zethon/CppCCQTemplate.git
+```
+
+Then create a build folder inside of the repository's folder and navigate into it:
+
+```
+cd CppCCQTemplate && mkdir build && cd build
+```
+
+At this point we're ready to run CMake, which in turn runs Conan. However, the bintray repository used to download Qt6 may not be configured on the local machine. It can be added to the Conan remote cache with the following command:
 
 ```
 conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
-git clone https://github.com/zethon/CppCCQTemplate.git
-cd CppCCQTemplate 
-mkdir build && cd build
-conan install .. -s build_type=Debug -g cmake_paths -g cmake_find_package -g=cmake -g deploy
+```
+
+Once we've added the bincrafters repository, we can run Conan and CMake in one step: 
+
+```
 cmake .. -DCMAKE_BUILD_TYPE=Debug
-cmake --build . 
+```
+
+In this case we have configured our build system to compile debug versions of the binaries. Now we can build with the following command:
+
+```
+cmake --build .
 ```
 
 ## Using a custom library

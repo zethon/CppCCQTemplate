@@ -17,7 +17,7 @@ on:
       - tests/**
 
 jobs:
-  build-macos:
+  build-windows:
     runs-on: windows-latest
     strategy:
       fail-fast: false

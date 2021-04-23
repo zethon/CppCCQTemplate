@@ -37,6 +37,9 @@ jobs:
 
     - name: Get Conan
       uses: turtlebrowser/get-conan@v1.0
+
+    - name: Add Bincrafters Remote
+      run: conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
       
     - name: Create Build Environment
       run: cmake -E make_directory ${{github.workspace}}/build

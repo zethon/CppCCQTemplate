@@ -34,6 +34,7 @@ jobs:
       run:  |
             sudo apt update
             sudo apt install gcc-9 g++-9
+            sudo apt install libgl1-mesa-dev
 
     - name: Get Conan
       uses: turtlebrowser/get-conan@v1.0

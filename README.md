@@ -1,6 +1,11 @@
 # C++ Conan CMake Qt6 Project Template
 
-This project aims to provide examples of the following common tasks associated with a Github hosted C++ project:
+![Windows Workflow](https://github.com/zethon/CppCCQTemplate/actions/workflows/windows.yml/badge.svg)
+![macos Workflow](https://github.com/zethon/CppCCQTemplate/actions/workflows/macos.yml/badge.svg)
+![Ubuntu Workflow](https://github.com/zethon/CppCCQTemplate/actions/workflows/ubuntu.yml/badge.svg)
+
+
+This project aims to provide examples of the following common tasks with C++ projects hosted on Github:
 
 * `[x]` Using Qt6 with CMake and Conan
 * `[ ]` Using Qt .ui files

@@ -35,9 +35,7 @@ add_executable(App ${GUI_TYPE}
 
 target_link_libraries(App 
     MyLib
-    Qt6::Core 
-    Qt6::Gui 
-    Qt6::Widgets
+    ${CONAN_TARGETS}
 )
 
 # install(TARGETS App RUNTIME DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

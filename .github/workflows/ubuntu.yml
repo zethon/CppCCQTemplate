@@ -1,0 +1,60 @@
+name: ubuntu
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - CMakeLists.txt
+      - CMake/**
+      - src/**
+      - tests/**     
+  pull_request:
+    paths:
+      - CMakeLists.txt
+      - CMake/**
+      - src/**
+      - tests/**
+
+jobs:
+  build-ubuntu:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        build_type: [Debug, Release]
+    env:
+      BUILD_TYPE: ${{ matrix.build_type }}
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install GCC9
+      shell: bash
+      run:  |
+            sudo apt update
+            sudo apt install gcc-9 g++-9
+            sudo apt install libgl1-mesa-dev
+
+    - name: Get Conan
+      uses: turtlebrowser/get-conan@v1.0
+
+    - name: Add Bincrafters Remote
+      run: conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+      
+    - name: Create Build Environment
+      run: cmake -E make_directory ${{github.workspace}}/build
+
+    - name: Configure CMake
+      shell: bash
+      working-directory: ${{github.workspace}}/build
+      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+      env:
+        CC:   gcc-9
+        CXX:  g++-9
+
+    - name: Build
+      working-directory: ${{github.workspace}}/build
+      shell: bash
+      run: cmake --build . --config $BUILD_TYPE
+      

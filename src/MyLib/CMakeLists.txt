@@ -20,6 +20,6 @@ add_library(MyLib STATIC
     ${MOC_SOURCE_FILES}
 )
 
-target_link_libraries(MyLib PRIVATE
+target_link_libraries(MyLib
     Qt6::Core
 )

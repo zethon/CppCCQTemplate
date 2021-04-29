@@ -12,7 +12,7 @@ This project aims to provide examples of the following common tasks with C++ pro
 * `[x]` Using a custom static library
 * `[ ]` Using a custom shared library
 * `[x]` Github actions to build on Windows, Mac and Ubuntu
-* `[ ]` A unit test environment
+* `[x]` A unit test environment
 * `[ ]` Packaging and Deployment
 
 Each item is discussed in detail.
@@ -75,7 +75,11 @@ I could only get Qt6 to build on Github Actions if I used `ubuntu-latest`, which
 
 I had forgotten to add the bincrafters repo, but the error I was getting said something like "could not find Qt/6.0.1@bincrafters/stable in repos", which made it sound like the Qt6 library wasn't in the repo. I would have instead expected something like "unknown repo".
 
-And lastly, I had to make sure that the `libgl1-mesa-dev` library was installed on the build image. 
+And lastly, I had to make sure that the `libgl1-mesa-dev` library was installed on the build image.
+
+## Adding Unit Tests
+
+This went remarkably well. I did have to specify a configuration on Windows with `-C $BUILD_TYPE` but not on Ubuntu or macos.
 
 ## Notes
 ### CMake, Qt, OpenSSL conflict error

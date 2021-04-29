@@ -14,6 +14,13 @@ set(CMAKE_AUTORCC ON)
 add_executable(testMain testmain.cpp)
 add_test(NAME testMain COMMAND testMain)
 
+if (WINDOWS)
+    set_tests_properties(testMain 
+        PROPERTIES
+        ENVIRONMENT "PATH=${CONAN_LIB_DIRS_QT}\;$ENV{PATH}"
+    )
+endif()
+
 target_link_libraries(testMain PRIVATE Qt6::Test MyLib)
 
 if (APPLE)

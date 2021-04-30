@@ -14,7 +14,7 @@ set(CMAKE_AUTORCC ON)
 add_executable(testMain testmain.cpp)
 add_test(NAME testMain COMMAND testMain)
 
-if (WINDOWS)
+if (WIN32)
     set_tests_properties(testMain 
         PROPERTIES
         ENVIRONMENT "PATH=${CONAN_LIB_DIRS_QT}\;$ENV{PATH}"

@@ -48,7 +48,7 @@ jobs:
     - name: Configure CMake
       shell: bash
       working-directory: ${{github.workspace}}/build
-      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DBUILD_UNIT_TESTS=ON
       env:
         CC:   gcc-9
         CXX:  g++-9
@@ -57,4 +57,9 @@ jobs:
       working-directory: ${{github.workspace}}/build
       shell: bash
       run: cmake --build . --config $BUILD_TYPE
+
+    - name: Tests
+      working-directory: ${{github.workspace}}/build
+      shell: bash
+      run: ctest --rerun-failed --output-on-failure
       

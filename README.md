@@ -8,12 +8,14 @@
 This project aims to provide examples of the following common tasks with C++ projects hosted on Github:
 
 * `[x]` Using Qt6 with CMake and Conan
-* `[ ]` Using Qt .ui files
 * `[x]` Using a custom static library
-* `[ ]` Using a custom shared library
 * `[x]` Github actions to build on Windows, Mac and Ubuntu
 * `[x]` A unit test environment
+<!--
+* `[ ]` Using Qt .ui files
+* `[ ]` Using a custom shared library
 * `[ ]` Packaging and Deployment
+-->
 
 Each item is discussed in detail.
 

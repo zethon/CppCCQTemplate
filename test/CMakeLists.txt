@@ -15,13 +15,10 @@ add_executable(testMain testmain.cpp)
 add_test(NAME testMain COMMAND testMain)
 
 if (WIN32)
-    message("PATH BEFORE: $ENV{PATH}")
     set_tests_properties(testMain 
         PROPERTIES
-        ENVIRONMENT "PATH=${CONAN_LIB_DIRS_QT}\;$ENV{PATH}"
+        ENVIRONMENT "PATH=${CONAN_BIN_DIRS_QT}\;$ENV{PATH}"
     )
-    message("CONANPATH : ${CONAN_LIB_DIRS_QT}")
-    message("PATH AFTER: $ENV{PATH}")
 endif()
 
 target_link_libraries(testMain PRIVATE Qt6::Test MyLib)

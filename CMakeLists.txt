@@ -10,7 +10,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(CMake/conan.cmake)
 conan_cmake_run(REQUIRES
     qt/6.0.1@bincrafters/stable
-    openssl/1.1.1j
+    openssl/1.1.1k
     BASIC_SETUP CMAKE_TARGETS
     BUILD missing)
 

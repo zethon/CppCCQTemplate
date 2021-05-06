@@ -79,7 +79,20 @@ And lastly, I had to make sure that the `libgl1-mesa-dev` library was installed 
 
 ## Adding Unit Tests
 
-This went remarkably well. I did have to specify a configuration on Windows with `-C $BUILD_TYPE` but not on Ubuntu or macos.
+The unit tests were pretty straight forward. The only OS that gave me much trouble was Windows.
+
+### Windows Unit Tests
+
+I had to add the build type to the `ctest` command. Also, for the tests to run I had to make sure that the Qt DLLs were in the test machine's path by doing the following:
+
+```
+if (WIN32)
+    set_tests_properties(testMain 
+        PROPERTIES
+        ENVIRONMENT "PATH=${CONAN_BIN_DIRS_QT}\;$ENV{PATH}"
+    )
+endif()
+```
 
 ## Notes
 ### CMake, Qt, OpenSSL conflict error

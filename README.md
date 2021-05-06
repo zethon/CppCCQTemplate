@@ -127,6 +127,8 @@ if (WIN32)
 endif()
 ```
 
+<!--
 ### Helpful Links
 
 https://wiki.qt.io/Qt6_Add-on_src_package_build_using_Conan_package_manager
+-->

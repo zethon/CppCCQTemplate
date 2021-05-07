@@ -23,11 +23,17 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [Debug, Release]
+        coverage: ["ON", "OFF"]
+        exclude:
+          - build_type: Release
+            coverage: ON
     env:
       BUILD_TYPE: ${{ matrix.build_type }}
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
     - name: Upgrading CMake
       run: |
@@ -46,7 +52,7 @@ jobs:
     - name: Configure CMake
       shell: bash
       working-directory: ${{github.workspace}}/build
-      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DBUILD_UNIT_TESTS=ON
+      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DBUILD_UNIT_TESTS=ON -DCODE_COVERAGE=${{matrix.coverage}}
 
     - name: Build
       working-directory: ${{github.workspace}}/build
@@ -57,3 +63,15 @@ jobs:
       working-directory: ${{github.workspace}}/build
       shell: bash
       run: ctest --rerun-failed --output-on-failure
+
+    - name: CodeCoverage
+      if: ${{ matrix.coverage == 'ON' && matrix.build_type == 'Debug'}}
+      shell: bash
+      working-directory: ${{github.workspace}}/build
+      run:  |
+            brew install lcov
+            lcov -d $GITHUB_WORKSPACE -c -o $GITHUB_WORKSPACE/coverage.info
+            lcov -r $GITHUB_WORKSPACE/coverage.info "*Qt*.framework*" "*Xcode.app*" "*.moc" "*moc_*.cpp" "*/test/*" "*Qt*" "*v1*" -o $GITHUB_WORKSPACE/coverage.info 
+            lcov --list $GITHUB_WORKSPACE/coverage.info
+            bash <(curl -s https://codecov.io/bash) -f $GITHUB_WORKSPACE/coverage.info || echo "Codecov did not collect coverage reports"
+      

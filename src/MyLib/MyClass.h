@@ -10,7 +10,9 @@ class MyClass
 
 public:
     explicit MyClass(const QString& text);
+
     QString appendIt(const QString& extra) const;
+    QString text() const;
 };
 
 }

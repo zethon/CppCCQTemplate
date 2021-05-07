@@ -3,6 +3,7 @@
 ![Windows Workflow](https://github.com/zethon/CppCCQTemplate/actions/workflows/windows.yml/badge.svg)
 ![macos Workflow](https://github.com/zethon/CppCCQTemplate/actions/workflows/macos.yml/badge.svg)
 ![Ubuntu Workflow](https://github.com/zethon/CppCCQTemplate/actions/workflows/ubuntu.yml/badge.svg)
+[![codecov](https://codecov.io/gh/zethon/CppCCQTemplate/branch/master/graph/badge.svg?token=C2ybTeKtDB)](https://codecov.io/gh/zethon/CppCCQTemplate)
 
 
 This project aims to provide examples of the following common tasks with C++ projects hosted on Github:
@@ -11,6 +12,7 @@ This project aims to provide examples of the following common tasks with C++ pro
 * `[x]` Using a custom static library
 * `[x]` Github actions to build on Windows, Mac and Ubuntu
 * `[x]` A unit test environment
+* `[x]` Code coverage
 <!--
 * `[ ]` Using Qt .ui files
 * `[ ]` Using a custom shared library
@@ -126,6 +128,12 @@ if (WIN32)
     )
 endif()
 ```
+
+## Code Coverage
+
+Code coverage is only supported on macos. I found useful reference projects [here](https://github.com/codecov/cpp-11-standard) and [here](https://github.com/codecov/example-cpp11-cmake). 
+
+Instead of creating a new `.yml` workflow, I tacked this onto the existing `macos.yml` by adding another matrix variable of on/off with coverage and exluding a Release build with coverage turned on. 
 
 <!--
 ### Helpful Links

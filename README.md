@@ -13,8 +13,8 @@ This project aims to provide examples of the following common tasks with C++ pro
 * `[x]` Github actions to build on Windows, Mac and Ubuntu
 * `[x]` A unit test environment
 * `[x]` Code coverage
-<!--
 * `[ ]` Using Qt .ui files
+<!--
 * `[ ]` Using a custom shared library
 * `[ ]` Packaging and Deployment
 -->
@@ -134,6 +134,19 @@ endif()
 Code coverage is only supported on macos. I found useful reference projects [here](https://github.com/codecov/cpp-11-standard) and [here](https://github.com/codecov/example-cpp11-cmake). 
 
 Instead of creating a new `.yml` workflow, I tacked this onto the existing `macos.yml` by adding another matrix variable of on/off with coverage and exluding a Release build with coverage turned on. 
+
+I did encounter this warning in the logs:
+
+```
+->  Issue detecting commit SHA. Please run actions/checkout with fetch-depth > 1 or set to 0
+    project root: /Users/runner/work/CppCCQTemplate/CppCCQTemplate
+```
+
+Which I fixed by increasing the `fetch-depth` in my checkout step in `macos.yml`.
+
+## Qt UI File
+
+Adding support for the UI file was simple. The only real thing of note with this was that changes to the .ui file alone will not trigger the auto UIC. Instead I had to touch the corresponsing header or source files. 
 
 <!--
 ### Helpful Links

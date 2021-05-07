@@ -13,4 +13,9 @@ QString MyClass::appendIt(const QString& extra) const
     return _text + " " + extra;
 }
 
+QString MyClass::text() const
+{
+    return _text;
+}
+
 }

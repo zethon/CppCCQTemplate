@@ -21,7 +21,12 @@ if (WIN32)
     )
 endif()
 
-target_link_libraries(testMain PRIVATE Qt6::Test MyLib)
+target_link_libraries(testMain 
+    PRIVATE 
+        Qt6::Test 
+        MyLib
+        coverage_config
+)
 
 if (APPLE)
     # Since there appear to exist problems with NOT setting the RPATH when building
@@ -29,7 +34,6 @@ if (APPLE)
     # to the conan lib dir.
 
     function(ChangeRPath target file new)
-        message("Change RPATH for target ${target} from @rpath/${file} to ${new}.")
         add_custom_command(TARGET testMain
                 POST_BUILD COMMAND
                 ${CMAKE_INSTALL_NAME_TOOL} -change @rpath/${file} ${new}/${file}

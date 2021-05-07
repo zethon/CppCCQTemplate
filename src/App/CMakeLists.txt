@@ -46,7 +46,6 @@ if (APPLE)
     # to the conan lib dir.
 
     function(ChangeRPath target file new)
-        message("Change RPATH for target ${target} from @rpath/${file} to ${new}.")
         add_custom_command(TARGET App
                 POST_BUILD COMMAND
                 ${CMAKE_INSTALL_NAME_TOOL} -change @rpath/${file} ${new}/${file}

@@ -68,5 +68,8 @@ jobs:
       working-directory: ${{github.workspace}}/build
       run:  |
             brew install lcov
-            lcov --version
+            lcov -d $GITHUB_WORKSPACE -c -o $GITHUB_WORKSPACE/coverage.info
+            lcov -r $GITHUB_WORKSPACE/coverage.info "*Qt*.framework*" "*Xcode.app*" "*.moc" "*moc_*.cpp" "*/test/*" "*Qt*" "*v1*" -o $GITHUB_WORKSPACE/coverage.info 
+            lcov --list $GITHUB_WORKSPACE/coverage.info
+            bash <(curl -s https://codecov.io/bash) -f $GITHUB_WORKSPACE/coverage.info || echo "Codecov did not collect coverage reports"
       

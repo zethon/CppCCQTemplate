@@ -1,8 +1,10 @@
 set(SOURCE_FILES
     main.cpp
+    Window1.cpp
 )
 
 set(MOC_HEADERS
+    Window1.h
 )
 
 set(HEADER_FILES
@@ -10,6 +12,7 @@ set(HEADER_FILES
 )
 
 set(UI_SOURCES
+    Window1.ui
 )
 
 set(CMAKE_AUTOMOC ON)
@@ -31,6 +34,8 @@ endif()
 
 add_executable(App ${GUI_TYPE}
     ${SOURCE_FILES}
+    ${HEADER_FILES}
+    ${UI_SOURCES}
 )
 
 target_link_libraries(App 

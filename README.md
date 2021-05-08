@@ -13,7 +13,7 @@ This project aims to provide examples of the following common tasks with C++ pro
 * `[x]` Github actions to build on Windows, Mac and Ubuntu
 * `[x]` A unit test environment
 * `[x]` Code coverage
-* `[ ]` Using Qt .ui files
+* `[x]` Using Qt .ui files
 <!--
 * `[ ]` Using a custom shared library
 * `[ ]` Packaging and Deployment

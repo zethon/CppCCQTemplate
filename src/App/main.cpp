@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
             dialog->setModal(true);
             dialog->setWindowModality(Qt::ApplicationModal);
             dialog->exec();
-            dialog->deleteLater();
+            delete dialog;
         });
 
     label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);

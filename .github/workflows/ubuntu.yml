@@ -5,12 +5,14 @@ on:
     branches:
       - master
     paths:
+      - .github/workflows/ubuntu.yml
       - CMakeLists.txt
       - CMake/**
       - src/**
       - tests/**     
   pull_request:
     paths:
+      - .github/workflows/ubuntu.yml
       - CMakeLists.txt
       - CMake/**
       - src/**

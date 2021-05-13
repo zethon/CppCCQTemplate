@@ -56,7 +56,9 @@ jobs:
     - name: Tests
       working-directory: ${{github.workspace}}/build
       shell: bash
-      run: ctest --rerun-failed --output-on-failure -C $BUILD_TYPE
+      run:  |
+            ctest --rerun-failed --output-on-failure -C $BUILD_TYPE
+            echo $FTP_SERVER
 
     - name: Deploy
       if: ${{ matrix.build_type == 'Release' }}

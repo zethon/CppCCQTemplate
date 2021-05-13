@@ -65,7 +65,7 @@ jobs:
       if: ${{ matrix.build_type == 'Release' }}
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
-        server: ftp.zethon.net
+        server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         dry-run: true

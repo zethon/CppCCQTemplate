@@ -30,7 +30,7 @@ endif(CODE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
 
 add_subdirectory(src)
 
-if (BUILD_UNIT_TESTS)
+if (BUILD_UNIT_TESTS2)
     enable_testing()
     add_subdirectory(test)
 endif()

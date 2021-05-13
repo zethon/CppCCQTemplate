@@ -27,7 +27,6 @@ jobs:
         build_type: [Debug, Release]
     env:
       BUILD_TYPE: ${{ matrix.build_type }}
-      FTP_SERVER: ${{ secrets.FTP_SERVER }}
 
     steps:
     - name: Checkout code
@@ -66,7 +65,7 @@ jobs:
       if: ${{ matrix.build_type == 'Release' }}
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
-        server: ${{ secrets.FTP_SERVER }}
+        server: ftp.zethon.net
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         dry-run: true

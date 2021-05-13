@@ -27,6 +27,7 @@ jobs:
         build_type: [Debug, Release]
     env:
       BUILD_TYPE: ${{ matrix.build_type }}
+      FTP_SERVER: ${{ secrets.FTP_SERVER }}
 
     steps:
     - name: Checkout code
@@ -56,7 +57,10 @@ jobs:
       shell: bash
       run:  |
             ctest --rerun-failed --output-on-failure -C $BUILD_TYPE
+            echo "SERVER: [" 
             echo $FTP_SERVER
+            echo ${{ env.FTP_SERVER }}
+            echo "]"
 
     - name: Deploy
       if: ${{ matrix.build_type == 'Release' }}

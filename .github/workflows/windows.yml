@@ -11,6 +11,7 @@ on:
       - tests/**
   pull_request:
     paths:
+      - **
       - CMakeLists.txt
       - CMake/**
       - src/**
@@ -60,4 +61,3 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         dry-run: true
-        

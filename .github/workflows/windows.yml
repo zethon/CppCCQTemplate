@@ -5,12 +5,14 @@ on:
     branches:
       - master
     paths:
+      - .github/workflows/windows.yml
       - CMakeLists.txt
       - CMake/**
       - src/**
       - tests/**
   pull_request:
     paths:
+      - .github/workflows/windows.yml
       - CMakeLists.txt
       - CMake/**
       - src/**
@@ -57,6 +59,7 @@ jobs:
       run: ctest --rerun-failed --output-on-failure -C $BUILD_TYPE
 
     - name: Deploy
+      if: ${{ matrix.build_type == 'Release' }}
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
         server: ${{ env.FTP_SERVER }}

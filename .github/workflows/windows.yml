@@ -52,3 +52,12 @@ jobs:
       working-directory: ${{github.workspace}}/build
       shell: bash
       run: ctest --rerun-failed --output-on-failure -C $BUILD_TYPE
+
+    - name: Deploy
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        dry-run: true
+        

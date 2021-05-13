@@ -14,10 +14,7 @@ This project aims to provide examples of the following common tasks with C++ pro
 * `[x]` A unit test environment
 * `[x]` Code coverage
 * `[x]` Using Qt .ui files
-<!--
-* `[ ]` Using a custom shared library
-* `[ ]` Packaging and Deployment
--->
+* `[x]` Packaging and Deployment
 
 Each item is discussed in detail.
 

@@ -5,12 +5,14 @@ on:
     branches:
       - master
     paths:
+      - .github/workflows/windows.yml
       - CMakeLists.txt
       - CMake/**
       - src/**
       - tests/**
   pull_request:
     paths:
+      - .github/workflows/windows.yml
       - CMakeLists.txt
       - CMake/**
       - src/**
@@ -27,7 +29,8 @@ jobs:
       BUILD_TYPE: ${{ matrix.build_type }}
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2.3.2
 
     - name: Get Conan
       uses: turtlebrowser/get-conan@v1.0
@@ -51,4 +54,18 @@ jobs:
     - name: Tests
       working-directory: ${{github.workspace}}/build
       shell: bash
-      run: ctest --rerun-failed --output-on-failure -C $BUILD_TYPE
+      run:  |
+            ctest --rerun-failed --output-on-failure -C $BUILD_TYPE
+            echo "SERVER: [" 
+            echo $FTP_SERVER
+            echo ${{ env.FTP_SERVER }}
+            echo "]"
+
+    - name: Deploy
+      if: ${{ matrix.build_type == 'Release' }}
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        dry-run: true

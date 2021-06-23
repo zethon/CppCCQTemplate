@@ -5,13 +5,12 @@ project(CppCCQtemplate)
 option(BUILD_UNIT_TESTS "Build unit tests (default OFF)" OFF)
 option(CODE_COVERAGE "Enable coverage reporting (default OFF)" OFF)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(CMake/conan.cmake)
 conan_cmake_run(REQUIRES
-    qt/6.0.1@bincrafters/stable
-    openssl/1.1.1k
+    qt/6.0.4
     BASIC_SETUP CMAKE_TARGETS
     BUILD missing)
 

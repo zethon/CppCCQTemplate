@@ -22,9 +22,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
-find_package(Qt6 COMPONENTS Core REQUIRED)
-find_package(Qt6 COMPONENTS Gui REQUIRED)
-find_package(Qt6 COMPONENTS Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Core Gui Widgets REQUIRED)
 
 add_executable(App WIN32 MACOSX_BUNDLE
     ${SOURCE_FILES}
@@ -33,17 +31,12 @@ add_executable(App WIN32 MACOSX_BUNDLE
 )
 
 target_link_libraries(App 
-    MyLib
-    Qt6::Core 
-    Qt6::Gui 
-    Qt6::Widgets
+    PRIVATE
+        MyLib
+        Qt6::Core 
+        Qt6::Gui 
+        Qt6::Widgets
 )
-
-# install(TARGETS App RUNTIME DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-
-if (WIN32)
-    target_link_options(App PRIVATE "/entry:mainCRTStartup")
-endif()
 
 if (APPLE)
     # Since there appear to exist problems with NOT setting the RPATH when building

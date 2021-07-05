@@ -12,6 +12,7 @@ include(CMake/conan.cmake)
 conan_cmake_run(REQUIRES
     qt/6.1.2
     BASIC_SETUP CMAKE_TARGETS
+    GENERATORS cmake_find_package
     BUILD missing)
 
 add_library(coverage_config INTERFACE)

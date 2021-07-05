@@ -38,9 +38,9 @@ target_link_libraries(App
         Qt6::Widgets
 )
 
-if (WIN32)
-    target_link_options(App PRIVATE "/entry:mainCRTStartup")
-endif()
+# if (WIN32)
+#     target_link_options(App PRIVATE "/entry:mainCRTStartup")
+# endif()
 
 if (APPLE)
     # Since there appear to exist problems with NOT setting the RPATH when building

@@ -31,7 +31,7 @@ add_executable(App WIN32 MACOSX_BUNDLE
 )
 
 target_link_libraries(App 
-    PRIVATE
+    PUBLIC
         MyLib
         Qt6::Core 
         Qt6::Gui 

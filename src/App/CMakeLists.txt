@@ -47,6 +47,10 @@ target_link_libraries(App
 
 # install(TARGETS App RUNTIME DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
+if (WIN32)
+    target_link_options(App PRIVATE "/entry:mainCRTStartup")
+endif()
+
 if (APPLE)
     # Since there appear to exist problems with NOT setting the RPATH when building
     # by enabling CMAKE_KEEP_RPATH and others, we just set the libs absolute paths

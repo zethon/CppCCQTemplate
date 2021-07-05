@@ -15,6 +15,7 @@ conan_cmake_run(REQUIRES
     GENERATORS cmake_find_package
     GENERATORS cmake_find_package
     BUILD missing)
+conan_basic_setup(NO_OUTPUT_DIRS KEEP_RPATHS)
 
 add_library(coverage_config INTERFACE)
 

@@ -12,7 +12,7 @@ include(CMake/conan.cmake)
 conan_cmake_run(REQUIRES
     qt/6.1.2
     BASIC_SETUP CMAKE_TARGETS
-    GENERATORS cmake_find_package
+    GENERATORS cmake_find_package cmake_paths
     BUILD missing)
 conan_basic_setup(NO_OUTPUT_DIRS KEEP_RPATHS)
 

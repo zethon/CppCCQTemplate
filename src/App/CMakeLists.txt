@@ -31,12 +31,16 @@ add_executable(App WIN32 MACOSX_BUNDLE
 )
 
 target_link_libraries(App 
-    PUBLIC
+    PRIVATE
         MyLib
         Qt6::Core 
         Qt6::Gui 
         Qt6::Widgets
 )
+
+if (WIN32)
+    target_link_options(App PRIVATE "/entry:mainCRTStartup")
+endif()
 
 if (APPLE)
     # Since there appear to exist problems with NOT setting the RPATH when building

@@ -26,13 +26,7 @@ find_package(Qt6 COMPONENTS Core REQUIRED)
 find_package(Qt6 COMPONENTS Gui REQUIRED)
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
 
-if (APPLE)
-    set(GUI_TYPE MACOSX_BUNDLE)
-elseif(WIN32)
-    set(GUI_TYPE WIN32)
-endif()
-
-add_executable(App ${GUI_TYPE}
+add_executable(App WIN32 MACOSX_BUNDLE
     ${SOURCE_FILES}
     ${HEADER_FILES}
     ${UI_SOURCES}

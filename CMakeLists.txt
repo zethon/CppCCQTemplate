@@ -14,7 +14,7 @@ conan_cmake_run(REQUIRES
     BASIC_SETUP CMAKE_TARGETS
     GENERATORS cmake_find_package cmake_paths
     BUILD missing)
-conan_basic_setup(NO_OUTPUT_DIRS KEEP_RPATHS)
+include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
 
 add_library(coverage_config INTERFACE)
 

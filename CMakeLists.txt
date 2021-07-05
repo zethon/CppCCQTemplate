@@ -10,7 +10,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(CMake/conan.cmake)
 conan_cmake_run(REQUIRES
-    qt/6.0.4
+    qt/6.1.2
     BASIC_SETUP CMAKE_TARGETS
     BUILD missing)
 

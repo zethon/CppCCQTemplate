@@ -2,7 +2,6 @@ project(UnitTests LANGUAGES CXX)
 
 include_directories(../src/MyLib)
 
-find_package(QT NAMES Qt6 COMPONENTS Test REQUIRED)
 find_package(Qt6 COMPONENTS Test REQUIRED)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)

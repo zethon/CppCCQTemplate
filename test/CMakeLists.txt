@@ -11,6 +11,11 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 add_executable(testMain WIN32 testmain.cpp)
+
+if (WIN32)
+    target_link_options(testMain PRIVATE "/entry:mainCRTStartup")
+endif()
+
 add_test(NAME testMain COMMAND testMain)
 
 if (WIN32)

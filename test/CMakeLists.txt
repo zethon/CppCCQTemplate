@@ -10,7 +10,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-add_executable(testMain testmain.cpp)
+add_executable(testMain WIN32 testmain.cpp)
 add_test(NAME testMain COMMAND testMain)
 
 if (WIN32)

@@ -2,7 +2,6 @@ project(UnitTests LANGUAGES CXX)
 
 include_directories(../src/MyLib)
 
-find_package(QT NAMES Qt6 COMPONENTS Test REQUIRED)
 find_package(Qt6 COMPONENTS Test REQUIRED)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -11,7 +10,12 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-add_executable(testMain testmain.cpp)
+add_executable(testMain WIN32 testmain.cpp)
+
+if (WIN32)
+    target_link_options(testMain PRIVATE "/entry:mainCRTStartup")
+endif()
+
 add_test(NAME testMain COMMAND testMain)
 
 if (WIN32)

@@ -43,18 +43,18 @@ if (WIN32)
 endif()
 
 if (APPLE)
-    # Since there appear to exist problems with NOT setting the RPATH when building
-    # by enabling CMAKE_KEEP_RPATH and others, we just set the libs absolute paths
-    # to the conan lib dir.
+    # # Since there appear to exist problems with NOT setting the RPATH when building
+    # # by enabling CMAKE_KEEP_RPATH and others, we just set the libs absolute paths
+    # # to the conan lib dir.
 
-    function(ChangeRPath target file new)
-        add_custom_command(TARGET App
-                POST_BUILD COMMAND
-                ${CMAKE_INSTALL_NAME_TOOL} -change @rpath/${file} ${new}/${file}
-                $<TARGET_FILE:App>)
-    endfunction()
+    # function(ChangeRPath target file new)
+    #     add_custom_command(TARGET App
+    #             POST_BUILD COMMAND
+    #             ${CMAKE_INSTALL_NAME_TOOL} -change @rpath/${file} ${new}/${file}
+    #             $<TARGET_FILE:App>)
+    # endfunction()
 
-    foreach(qt_lib IN LISTS CONAN_LIBS_QT)
-        ChangeRPath(App lib${qt_lib}.dylib ${CONAN_LIB_DIRS_QT})
-    endforeach()
+    # foreach(qt_lib IN LISTS CONAN_LIBS_QT)
+    #     ChangeRPath(App lib${qt_lib}.dylib ${CONAN_LIB_DIRS_QT})
+    # endforeach()
 endif ()

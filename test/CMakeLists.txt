@@ -37,15 +37,15 @@ if (APPLE)
     # by enabling CMAKE_KEEP_RPATH and others, we just set the libs absolute paths
     # to the conan lib dir.
 
-    function(ChangeRPath target file new)
-        add_custom_command(TARGET testMain
-                POST_BUILD COMMAND
-                ${CMAKE_INSTALL_NAME_TOOL} -change @rpath/${file} ${new}/${file}
-                $<TARGET_FILE:testMain>)
-    endfunction()
+    # function(ChangeRPath target file new)
+    #     add_custom_command(TARGET testMain
+    #             POST_BUILD COMMAND
+    #             ${CMAKE_INSTALL_NAME_TOOL} -change @rpath/${file} ${new}/${file}
+    #             $<TARGET_FILE:testMain>)
+    # endfunction()
 
-    foreach(qt_lib IN LISTS CONAN_LIBS_QT)
-        ChangeRPath(testMain lib${qt_lib}.dylib ${CONAN_LIB_DIRS_QT})
-    endforeach()
+    # foreach(qt_lib IN LISTS CONAN_LIBS_QT)
+    #     ChangeRPath(testMain lib${qt_lib}.dylib ${CONAN_LIB_DIRS_QT})
+    # endforeach()
 endif ()
 

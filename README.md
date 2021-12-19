@@ -1,12 +1,13 @@
-# C++ Conan CMake Qt6 Project Template
+# C++Conan CMake Qt6 Project Template
 
 ![Windows Workflow](https://github.com/zethon/CppCCQTemplate/actions/workflows/windows.yml/badge.svg)
 ![macos Workflow](https://github.com/zethon/CppCCQTemplate/actions/workflows/macos.yml/badge.svg)
 ![Ubuntu Workflow](https://github.com/zethon/CppCCQTemplate/actions/workflows/ubuntu.yml/badge.svg)
 [![codecov](https://codecov.io/gh/zethon/CppCCQTemplate/branch/master/graph/badge.svg?token=C2ybTeKtDB)](https://codecov.io/gh/zethon/CppCCQTemplate)
 
+This project uses C++20 and Qt 6.1.2.
 
-This project aims to provide examples of the following common tasks with C++ projects hosted on Github:
+The aims is to provide examples of the following common tasks with C++ projects hosted on Github:
 
 * `[x]` Using Qt6 with CMake and Conan
 * `[x]` Using a custom static library
@@ -147,6 +148,18 @@ Which I fixed by increasing the `fetch-depth` in my checkout step in `macos.yml`
 ## Qt UI File
 
 Adding support for the UI file was simple. The only real thing of note with this was that changes to the .ui file alone will not trigger the auto UIC. Instead I had to touch the corresponsing header or source files. 
+
+## Unit Tests on Mac
+
+The Mac unit tests kept giving me the follow error when the CI system tried to invoke them:
+```
+dyld: Library not loaded: @rpath/libQt6Test_debug.6.dylib
+  Referenced from: /bin/testMain
+  Reason: image not found
+```
+This means that CTest could not execute the testMain binary because the testMain binary could not find the file `libQt6Test_debug.6.dylib` in the `@rpath` which is the **Run Search Path**. The RPath is a list of paths embedded in the application that tells the application which files to look in for dynamically linked libraries. When testMain loaded up the first thing it did was iterate through the list of its RPaths and start looking for the file `libQt6Test_debug.dylib`, which it could not find and gave us this error.
+
+I put code in place to replace the `@rpath` with a direct path to the library, and once I got all the paths and filename correct, everything worked as expected.
 
 <!--
 ### Helpful Links

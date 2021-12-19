@@ -115,7 +115,19 @@ And lastly, I had to make sure that the `libgl1-mesa-dev` library was installed 
 
 ## Adding Unit Tests
 
-The unit tests were pretty straight forward. The only OS that gave me much trouble was Windows.
+Here are some nots about adding unit tests to each OS.
+
+### Unit Tests on Mac
+
+The Mac unit tests kept giving me the follow error when the CI system tried to invoke them:
+```
+dyld: Library not loaded: @rpath/libQt6Test_debug.6.dylib
+  Referenced from: /bin/testMain
+  Reason: image not found
+```
+This means that CTest could not execute the testMain binary because the testMain binary could not find the file `libQt6Test_debug.6.dylib` in the `@rpath` which is the **Run Search Path**. The RPath is a list of paths embedded in the application that tells the application which files to look in for dynamically linked libraries. When testMain loaded up the first thing it did was iterate through the list of its RPaths and start looking for the file `libQt6Test_debug.dylib`, which it could not find and gave us this error.
+
+I put code in place to replace the `@rpath` with a direct path to the library, and once I got all the paths and filename correct, everything worked as expected.
 
 ### Windows
 
@@ -148,18 +160,6 @@ Which I fixed by increasing the `fetch-depth` in my checkout step in `macos.yml`
 ## Qt UI File
 
 Adding support for the UI file was simple. The only real thing of note with this was that changes to the .ui file alone will not trigger the auto UIC. Instead I had to touch the corresponsing header or source files. 
-
-## Unit Tests on Mac
-
-The Mac unit tests kept giving me the follow error when the CI system tried to invoke them:
-```
-dyld: Library not loaded: @rpath/libQt6Test_debug.6.dylib
-  Referenced from: /bin/testMain
-  Reason: image not found
-```
-This means that CTest could not execute the testMain binary because the testMain binary could not find the file `libQt6Test_debug.6.dylib` in the `@rpath` which is the **Run Search Path**. The RPath is a list of paths embedded in the application that tells the application which files to look in for dynamically linked libraries. When testMain loaded up the first thing it did was iterate through the list of its RPaths and start looking for the file `libQt6Test_debug.dylib`, which it could not find and gave us this error.
-
-I put code in place to replace the `@rpath` with a direct path to the library, and once I got all the paths and filename correct, everything worked as expected.
 
 <!--
 ### Helpful Links

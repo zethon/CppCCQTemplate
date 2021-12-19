@@ -97,27 +97,11 @@ target_link_libraries(MyLib PRIVATE
 
 Without this the compiler complains that it cannot find `QString` on the line `#include <QString>`.
 
-## Github Actions
-
-THe Github action settings for Windows was pretty straightforward. So much so that it almost worked right away, and thus there are no notes worth mentioning.
+## Unit Tests and Github Actions
 
 ### macos
 
 I had to make sure the latest version of CMake is installed, which was luckly a simple call to brew (even though this didn't work on my local Mac). 
-
-### Ubuntu
-
-I could only get Qt6 to build on Github Actions if I used `ubuntu-latest`. I also hit a GLIB compatibility error that lead me to [this Stack Overflow post](https://stackoverflow.com/questions/64495774/libcrypto-so-undefined-reference-to-fcntlglibc-2-28). 
-
-I had forgotten to add the bincrafters repo, but the error I was getting said something like "could not find Qt/6.0.1@bincrafters/stable in repos", which made it sound like the Qt6 library wasn't in the repo. I would have instead expected something like "unknown repo".
-
-And lastly, I had to make sure that the `libgl1-mesa-dev` library was installed on the build image.
-
-## Adding Unit Tests
-
-Here are some nots about adding unit tests to each OS.
-
-### Unit Tests on Mac
 
 The Mac unit tests kept giving me the follow error when the CI system tried to invoke them:
 ```
@@ -128,7 +112,13 @@ dyld: Library not loaded: @rpath/libQt6Test_debug.6.dylib
 This means that CTest could not execute the testMain binary because the testMain binary could not find the file `libQt6Test_debug.6.dylib` in the `@rpath` which is the **Run Search Path**. The RPath is a list of paths embedded in the application that tells the application which files to look in for dynamically linked libraries. When testMain loaded up the first thing it did was iterate through the list of its RPaths and start looking for the file `libQt6Test_debug.dylib`, which it could not find and gave us this error.
 
 I put code in place to replace the `@rpath` with a direct path to the library, and once I got all the paths and filename correct, everything worked as expected.
+### Ubuntu
 
+I could only get Qt6 to build on Github Actions if I used `ubuntu-latest`. I also hit a GLIB compatibility error that lead me to [this Stack Overflow post](https://stackoverflow.com/questions/64495774/libcrypto-so-undefined-reference-to-fcntlglibc-2-28). 
+
+I had forgotten to add the bincrafters repo, but the error I was getting said something like "could not find Qt/6.0.1@bincrafters/stable in repos", which made it sound like the Qt6 library wasn't in the repo. I would have instead expected something like "unknown repo".
+
+And lastly, I had to make sure that the `libgl1-mesa-dev` library was installed on the build image.
 ### Windows
 
 First, I had to add the build type to the `ctest` command. Secondly for the tests to run I had to make sure that the Qt DLLs were in the test machine's path adding this in *test/CMakeLists.txt*: 

@@ -1,12 +1,14 @@
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-find_package(Qt6 COMPONENTS Core REQUIRED)
+find_package(Qt6 COMPONENTS Core QuickWidgets REQUIRED)
 
 set(SOURCE_FILES
     MyClass.cpp
+    MyQMLClass.cpp
 )
 
 set (MOC_HEADERS
+    MyQMLClass.h
 )
 
 set(HEADER_FILES

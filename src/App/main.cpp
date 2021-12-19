@@ -5,6 +5,7 @@
 #include <QtWidgets/QPushButton>
 
 #include <../MyLib/MyClass.h>
+#include <../MyLib/MyQMLClass.h>
 #include "Window1.h"
  
 int main(int argc, char *argv[]) 
@@ -20,7 +21,7 @@ int main(int argc, char *argv[])
     app::MyClass obj("Hello");
     QLabel* label = new QLabel(obj.appendIt("library world!!"));
 
-    QPushButton* btn1 = new QPushButton("Push Me");
+    QPushButton* btn1 = new QPushButton("UI File");
     QObject::connect(btn1, &QPushButton::released, &widget,
         []() 
         { 
@@ -31,9 +32,17 @@ int main(int argc, char *argv[])
             delete dialog;
         });
 
+    QPushButton* btn2 = new QPushButton("QML File");
+    QObject::connect(btn2, &QPushButton::released, &widget,
+        []()
+        {
+//            app::MyQMLWidget* myqml = new app::MyQMLWidget();
+        });
+
     label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     gridLayout->addWidget(label);
     gridLayout->addWidget(btn1);
+    gridLayout->addWidget(btn2);
  
     widget.show();
  

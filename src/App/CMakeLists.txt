@@ -22,7 +22,10 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
-find_package(Qt6 COMPONENTS Core Gui Widgets REQUIRED)
+find_package(Qt6
+    COMPONENTS Core Gui Widgets QuickWidgets
+    REQUIRED
+)
 
 add_executable(App WIN32 MACOSX_BUNDLE
     ${SOURCE_FILES}
@@ -34,7 +37,8 @@ target_link_libraries(App
     PRIVATE
         MyLib
         Qt6::Core 
-        Qt6::Gui 
+        Qt6::Gui
+        Qt6::QuickWidgets
         Qt6::Widgets
 )
 

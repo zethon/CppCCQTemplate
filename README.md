@@ -15,6 +15,7 @@ The aim of the project is to provide examples of the following common tasks with
 * `[x]` A unit test environment
 * `[x]` Code coverage
 * `[x]` Using Qt .ui files
+* '[ ]` Use QML file
 <!--
 * `[ ]` Using a custom shared library
 * `[ ]` Packaging and Deployment

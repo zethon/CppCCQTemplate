@@ -7,7 +7,7 @@
 
 This project uses C++20 and Qt 6.1.2.
 
-The aims is to provide examples of the following common tasks with C++ projects hosted on Github:
+The aim of the project is to provide examples of the following common tasks with C++ projects hosted on Github:
 
 * `[x]` Using Qt6 with CMake and Conan
 * `[x]` Using a custom static library

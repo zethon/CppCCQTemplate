@@ -5,7 +5,7 @@
 ![Ubuntu Workflow](https://github.com/zethon/CppCCQTemplate/actions/workflows/ubuntu.yml/badge.svg)
 [![codecov](https://codecov.io/gh/zethon/CppCCQTemplate/branch/master/graph/badge.svg?token=C2ybTeKtDB)](https://codecov.io/gh/zethon/CppCCQTemplate)
 
-This project uses C++20 and Qt 6.1.2.
+This project uses C++20 and Qt 6.2.1.
 
 The aim of the project is to provide examples of the following common tasks with C++ projects hosted on Github:
 

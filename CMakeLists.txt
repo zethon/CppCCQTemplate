@@ -10,12 +10,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(CMake/conan.cmake)
 conan_cmake_run(REQUIRES
-    qt/6.2.1
+    qt/6.2.2
     libffi/3.4.2
-    BASIC_SETUP CMAKE_TARGETS
+    BASIC_SETUP
     GENERATORS cmake_find_package cmake_paths
     BUILD missing
-    OPTIONS qt:shared=True qt:qtdeclarative=True)
+    OPTIONS qt:shared=True
+        qt:widgets=True
+        qt:gui=True
+        qt:qtdeclarative=True)
 include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
 
 add_library(coverage_config INTERFACE)

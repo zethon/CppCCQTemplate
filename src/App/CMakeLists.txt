@@ -23,7 +23,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
 find_package(Qt6
-    COMPONENTS Core Gui Widgets QuickWidgets
+    COMPONENTS Core Gui Widgets Quick QuickWidgets
     REQUIRED
 )
 
@@ -38,7 +38,6 @@ target_link_libraries(App
         MyLib
         Qt6::Core 
         Qt6::Gui
-        Qt6::QuickWidgets
         Qt6::Widgets
 )
 

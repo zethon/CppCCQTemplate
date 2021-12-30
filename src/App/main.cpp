@@ -20,6 +20,11 @@ int main(int argc, char *argv[])
     app::MyClass obj("Hello");
     QLabel* label = new QLabel(obj.appendIt("library world!!"));
 
+    auto image = new QImage(":/images/example.png");
+    auto imglbl = new QLabel();
+    imglbl->setPixmap(QPixmap::fromImage(*image));
+    imglbl->setAlignment(Qt::AlignCenter);
+
     QPushButton* btn1 = new QPushButton("Push Me");
     QObject::connect(btn1, &QPushButton::released, &widget,
         []() 
@@ -32,6 +37,7 @@ int main(int argc, char *argv[])
         });
 
     label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
+    gridLayout->addWidget(imglbl);
     gridLayout->addWidget(label);
     gridLayout->addWidget(btn1);
  

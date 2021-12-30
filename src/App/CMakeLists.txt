@@ -15,6 +15,10 @@ set(UI_SOURCES
     Window1.ui
 )
 
+set(QRC_SOURCE_FILES
+    res/MyApp.qrc
+)
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
@@ -28,6 +32,7 @@ add_executable(App WIN32 MACOSX_BUNDLE
     ${SOURCE_FILES}
     ${HEADER_FILES}
     ${UI_SOURCES}
+    ${QRC_SOURCE_FILES}
 )
 
 target_link_libraries(App 

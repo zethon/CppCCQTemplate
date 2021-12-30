@@ -5,7 +5,7 @@
 ![Ubuntu Workflow](https://github.com/zethon/CppCCQTemplate/actions/workflows/ubuntu.yml/badge.svg)
 [![codecov](https://codecov.io/gh/zethon/CppCCQTemplate/branch/master/graph/badge.svg?token=C2ybTeKtDB)](https://codecov.io/gh/zethon/CppCCQTemplate)
 
-This project uses C++20 and Qt 6.2.1.
+This project uses C++20 and Qt 6.1.2.
 
 The aim of the project is to provide examples of the following common tasks with C++ projects hosted on Github:
 
@@ -17,41 +17,9 @@ The aim of the project is to provide examples of the following common tasks with
 * `[x]` Using Qt .ui files
 * `[x]` Using Qt Resource file
 
-Each item is discussed in detail.
+Each item is discussed below.
 
-## Building
-
-First we clone the Github repository:
-
-```bash
-git clone https://github.com/zethon/CppCCQTemplate.git
-```
-
-Then create a build folder inside of the repository's folder and navigate into it:
-
-```bash
-cd CppCCQTemplate && mkdir build && cd build
-```
-
-At this point we're ready to run CMake, which in turn runs Conan. However, the bintray repository used to download Qt6 may not be configured on the local machine. It can be added to the Conan remote cache with the following command:
-
-```bash
-conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
-```
-
-Once we've added the bincrafters repository, we can run Conan and CMake in one step: 
-
-```bash
-cmake .. -DCMAKE_BUILD_TYPE=Debug
-```
-
-In this case we have configured our build system to compile debug versions of the binaries. Now we can build with the following command:
-
-```bash
-cmake --build .
-```
-
-<hr/>
+# Details
 
 ## Using Qt6 with CMake and Conan
 
@@ -148,8 +116,59 @@ Which I fixed by increasing the `fetch-depth` in my checkout step in `macos.yml`
 
 Adding support for the UI file was simple. The only real thing of note with this was that changes to the .ui file alone will not trigger the auto UIC. Instead I had to touch the corresponsing header or source files. 
 
-<!--
-### Helpful Links
+## Qt Resource File
 
-https://wiki.qt.io/Qt6_Add-on_src_package_build_using_Conan_package_manager
--->
+The Qt Resoure file allows you to embed resources (images, data files, etc) directly into the executable that can be loaded and used during runtime. This example loads a resource image into a label object and displays that on the dialog:
+```cpp
+    auto image = new QImage(":/images/example.png");
+    auto imglbl = new QLabel();
+    imglbl->setPixmap(QPixmap::fromImage(*image));
+    imglbl->setAlignment(Qt::AlignCenter);
+```
+The catalog of resources is stored in the resource file which has a simple XML format:
+```xml
+<RCC>
+    <qresource prefix="/">
+        <file>images/example.png</file>
+    </qresource>
+</RCC>
+```
+The resource file is then linked into the executable like any other source file in CMake:
+```cmake
+add_executable(App WIN32 MACOSX_BUNDLE
+    res/MyApp.qrc
+    ...
+)
+```
+
+# Building
+
+First we clone the Github repository:
+
+```bash
+git clone https://github.com/zethon/CppCCQTemplate.git
+```
+
+Then create a build folder inside of the repository's folder and navigate into it:
+
+```bash
+cd CppCCQTemplate && mkdir build && cd build
+```
+
+At this point we're ready to run CMake, which in turn runs Conan. However, the bintray repository used to download Qt6 may not be configured on the local machine. It can be added to the Conan remote cache with the following command:
+
+```bash
+conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+```
+
+Once we've added the bincrafters repository, we can run Conan and CMake in one step: 
+
+```bash
+cmake .. -DCMAKE_BUILD_TYPE=Debug
+```
+
+In this case we have configured our build system to compile debug versions of the binaries. Now we can build with the following command:
+
+```bash
+cmake --build .
+```

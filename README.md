@@ -120,10 +120,10 @@ Adding support for the UI file was simple. The only real thing of note with this
 
 The Qt Resoure file allows you to embed resources (images, data files, etc) directly into the executable that can be loaded and used during runtime. This example loads a resource image into a label object and displays that on the dialog:
 ```cpp
-    auto image = new QImage(":/images/example.png");
-    auto imglbl = new QLabel();
-    imglbl->setPixmap(QPixmap::fromImage(*image));
-    imglbl->setAlignment(Qt::AlignCenter);
+auto image = new QImage(":/images/example.png");
+auto imglbl = new QLabel();
+imglbl->setPixmap(QPixmap::fromImage(*image));
+imglbl->setAlignment(Qt::AlignCenter);
 ```
 The catalog of resources is stored in the resource file which has a simple XML format:
 ```xml

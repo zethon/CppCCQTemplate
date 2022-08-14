@@ -10,8 +10,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(CMake/conan.cmake)
 conan_cmake_run(REQUIRES
-    qt/6.2.1
+    qt/6.3.0
     libffi/3.4.2
+    libiconv/1.17
     BASIC_SETUP CMAKE_TARGETS
     GENERATORS cmake_find_package cmake_paths
     BUILD missing
